@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+class Form;
 
 class Bureaucrat {
 public:
@@ -13,7 +14,7 @@ public:
 	 */
 	const std::string getName(void) const;
 	int getGrade(void) const;
-	void signForm();
+	void signForm(Form& form);
 
 	/**
 	 * Exception Class
@@ -39,5 +40,5 @@ private:
     
 };
 
-std::ostream &operator<<(std::ostream& out, const Bureaucrat& bureaucrat);
+std::ostream& operator<<(std::ostream& out, const Bureaucrat& bureaucrat);
 

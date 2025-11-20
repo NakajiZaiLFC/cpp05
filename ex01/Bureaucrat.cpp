@@ -1,7 +1,9 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include "iostream"
 
-Bureaucrat::Bureaucrat(const std::string& name, const int& grade) : m_name(name), m_grade(grade) {
+Bureaucrat::Bureaucrat(const std::string &name, const int &grade) : m_name(name), m_grade(grade)
+{
 	if (grade < 1)
 	{
 		std::cout << "GradeTooHighException called" << std::endl;
@@ -14,18 +16,21 @@ Bureaucrat::Bureaucrat(const std::string& name, const int& grade) : m_name(name)
 	}
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& other) : m_name(other.m_name), m_grade(other.m_grade) {}
+Bureaucrat::Bureaucrat(const Bureaucrat &other) : m_name(other.m_name), m_grade(other.m_grade) {}
 
-Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
-    if (this != &other) {
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
+{
+	if (this != &other)
+	{
 		this->m_grade = other.m_grade;
-    }
-    return *this;
+	}
+	return *this;
 }
 
 Bureaucrat::~Bureaucrat() {}
 
-std::ostream &operator<<(std::ostream& out, const Bureaucrat& bureaucrat) {
+std::ostream &operator<<(std::ostream &out, const Bureaucrat &bureaucrat)
+{
 	out << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << ".";
 	return out;
 }
@@ -38,4 +43,15 @@ const std::string Bureaucrat::getName(void) const
 int Bureaucrat::getGrade(void) const
 {
 	return m_grade;
+}
+
+void Bureaucrat::signForm(Form& form)
+{
+	try{
+		form.beSigned(*this);
+		std::cout << m_name << " signed " << form.getName() << std::endl;
+	}
+	catch (const std::exception& e){
+		std::cout << m_name << " couldn’t sign " << form.getName() << " because " << e.what() << std::endl;
+	}
 }
