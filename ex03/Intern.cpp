@@ -22,7 +22,7 @@ AForm* Intern::makeForm(const std::string& formName, const std::string& target)
 		"presidential pardon"
 	};
 
-	AForm* (Intern::*fromCreators[formKindNum])(const std::string&) = {
+	AForm* (Intern::*formCreators[formKindNum])(const std::string&) = {
 		&Intern::createShrubbery,
 		&Intern::createRobotomy,
 		&Intern::createPresidential
@@ -31,7 +31,7 @@ AForm* Intern::makeForm(const std::string& formName, const std::string& target)
 	for (int i = 0; i < formKindNum; i++){
 		if (formName == formsList[i]){
 			std::cout << "Intern creates " << formsList[i] << std::endl;
-			return (this->*fromCreators[i])(target);
+			return (this->*formCreators[i])(target);
 		}
 	}
 	std::cout << "Intern cannot create " << formName << " (unknown form)" << std::endl;
