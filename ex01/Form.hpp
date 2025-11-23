@@ -39,7 +39,6 @@ public:
 				return "Grade is too low!";
 			}
 	};
-
 private:
     Form();
     const std::string m_name;

@@ -7,6 +7,9 @@ OBJDIR := obj
 
 OBJ := $(addprefix $(OBJDIR)/, $(FILE:.cpp=.o))
 
+FORBIDDEN_KEYWORDS := "printf|alloc|free|friend|using namespace"
+CHECK_FILES := *.cpp *.hpp
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
@@ -30,4 +33,14 @@ run:re
 	clear
 	valgrind --leak-check=full --show-leak-kinds=all -q ./$(NAME)
 
-.PHONY: re clean fclean all run
+
+check:
+	@echo "Checking for forbidden keywords..."
+	@if grep -E $(FORBIDDEN_KEYWORDS) $(CHECK_FILES) | grep -v "Makefile"; then \
+		echo "❌ \033[31mForbidden keywords found!\033[0m"; \
+		exit 1; \
+	else \
+		echo "✅ \033[32mNo forbidden keywords found.\033[0m"; \
+	fi
+
+.PHONY: re clean fclean all run check

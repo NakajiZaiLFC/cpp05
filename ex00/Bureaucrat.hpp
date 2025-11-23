@@ -6,7 +6,6 @@ public:
 	/**
 	 * OCF
 	 */
-    Bureaucrat(const std::string& name, const int& grade);
     Bureaucrat(const Bureaucrat& other);
     Bureaucrat& operator=(const Bureaucrat& other);
     ~Bureaucrat();
@@ -14,6 +13,7 @@ public:
 	/**
 	 * Member Function
 	 */
+    Bureaucrat(const std::string& name, const int& grade);
 	const std::string getName(void) const;
 	int getGrade(void) const;
 
