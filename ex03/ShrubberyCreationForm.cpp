@@ -4,26 +4,20 @@
 #include <iostream>
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target)
-	: AForm("shrubbery creation", 145, 137), m_target(target)
-{
-}
+	: AForm("shrubbery creation", 145, 137), m_target(target){}
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) : AForm(other)
-{
-	*this = other;
-}
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) : AForm(other) , m_target(other.m_target) {}
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other)
 {
 	if (this != &other)
 	{
+		this->m_target = other.m_target;
 	}
 	return *this;
 }
 
-ShrubberyCreationForm::~ShrubberyCreationForm()
-{
-}
+ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
 bool ShrubberyCreationForm::treePlanting(void) const
 {

@@ -5,22 +5,18 @@
 RobotomyRequestForm::RobotomyRequestForm(const std::string &target)
 	: AForm("robotomy request", 72, 45), m_target(target){}
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) : AForm(other)
-{
-	*this = other;
-}
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) : AForm(other), m_target(other.m_target) {}
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &other)
 {
 	if (this != &other)
 	{
+		this->m_target = other.m_target;
 	}
 	return *this;
 }
 
-RobotomyRequestForm::~RobotomyRequestForm()
-{
-}
+RobotomyRequestForm::~RobotomyRequestForm() {}
 
 void RobotomyRequestForm::execute(const Bureaucrat &bureaucrat) const 
 {
