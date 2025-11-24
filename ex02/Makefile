@@ -29,6 +29,7 @@ clean:
 	rm -rf $(OBJDIR)
 
 fclean: clean
+	rm -rf *_shrubbery
 	rm -rf $(NAME)
 
 re: fclean all

@@ -7,70 +7,83 @@
 
 int main()
 {
-	try
-	{
-		// 官僚の作成
-		std::cout << "=== 官僚の作成 ===" << std::endl;
-		Bureaucrat intern("インターン", 140);
-		Bureaucrat executor("実行官", 40);
-		Bureaucrat president("社長", 1);
+    try
+    {
+        // Creating Bureaucrats
+        std::cout << "=== Creating Bureaucrats ===" << std::endl;
+        Bureaucrat intern("Rookie", 140);
+        Bureaucrat executor("Executor", 40);
+        Bureaucrat president("President", 1);
 
-		std::cout << intern << std::endl;
-		std::cout << executor << std::endl;
-		std::cout << president << std::endl;
+        std::cout << intern << std::endl;
+        std::cout << executor << std::endl;
+        std::cout << president << std::endl;
 
-		// フォームの作成
-		std::cout << "\n=== フォームの作成 ===" << std::endl;
-		ShrubberyCreationForm shrubbery("garden");
-		RobotomyRequestForm robotomy("target");
-		PresidentialPardonForm pardon("criminal");
+        // Creating Forms
+        std::cout << "\n=== Creating Forms ===" << std::endl;
+        ShrubberyCreationForm shrubbery("garden");
+        RobotomyRequestForm robotomy("target");
+        PresidentialPardonForm pardon("criminal");
+		std::cout << std::endl;
 
-		std::cout << shrubbery << std::endl;
-		std::cout << robotomy << std::endl;
-		std::cout << pardon << std::endl;
+        std::cout << shrubbery << std::endl;
+		std::cout << std::endl;
+        std::cout << robotomy << std::endl;
+		std::cout << std::endl;
+        std::cout << pardon << std::endl;
+		std::cout << std::endl;
 
-		// 署名のテスト
-		std::cout << "\n=== 署名のテスト ===" << std::endl;
+        // Signing Tests
+        std::cout << "\n=== Signing Tests ===" << std::endl;
 
-		// インターンが庭園作成フォームに署名（成功するはず）
-		intern.signForm(shrubbery);
+        // Intern signs Shrubbery Creation Form (Should succeed)
+        intern.signForm(shrubbery);
+		std::cout << std::endl;
 
-		// インターンがロボトミーフォームに署名（失敗するはず）
-		intern.signForm(robotomy);
+        // Intern signs Robotomy Request Form (Should fail)
+        intern.signForm(robotomy);
+		std::cout << std::endl;
 
-		// 実行官がロボトミーフォームに署名（成功するはず）
-		executor.signForm(robotomy);
+        // Executor signs Robotomy Request Form (Should succeed)
+        executor.signForm(robotomy);
+		std::cout << std::endl;
 
-		// 社長が大統領赦免フォームに署名（成功するはず）
-		president.signForm(pardon);
+        // President signs Presidential Pardon Form (Should succeed)
+        president.signForm(pardon);
+		std::cout << std::endl;
 
-		// 実行のテスト
-		std::cout << "\n=== 実行のテスト ===" << std::endl;
+        // Execution Tests
+        std::cout << "\n=== Execution Tests ===" << std::endl;
 
-		// インターンが庭園作成フォームを実行（失敗するはず）
-		intern.executeForm(shrubbery);
+        // Intern executes Shrubbery Creation Form (Should fail)
+        intern.executeForm(shrubbery);
+		std::cout << std::endl;
 
-		// 実行官が庭園作成フォームを実行（成功するはず）
-		executor.executeForm(shrubbery);
+        // Executor executes Shrubbery Creation Form (Should succeed)
+        executor.executeForm(shrubbery);
+		std::cout << std::endl;
 
-		// 実行官がロボトミーフォームを実行（成功するはず）
-		executor.executeForm(robotomy);
+        // Executor executes Robotomy Request Form (Should succeed)
+        executor.executeForm(robotomy);
+		std::cout << std::endl;
 
-		// 実行官が大統領赦免フォームを実行（失敗するはず）
-		executor.executeForm(pardon);
+        // Executor executes Presidential Pardon Form (Should fail)
+        executor.executeForm(pardon);
+		std::cout << std::endl;
 
-		// 社長が大統領赦免フォームを実行（成功するはず）
-		president.executeForm(pardon);
+        // President executes Presidential Pardon Form (Should succeed)
+        president.executeForm(pardon);
+		std::cout << std::endl;
 
-		// 未署名フォームの実行テスト
-		std::cout << "\n=== 未署名フォームの実行テスト ===" << std::endl;
-		ShrubberyCreationForm unsignedForm("unsignedGarden");
-		president.executeForm(unsignedForm);
-	}
-	catch (const std::exception &e)
-	{
-		std::cout << "例外が発生しました: " << e.what() << std::endl;
-	}
+        // Unsigned Form Execution Test
+        std::cout << "\n=== Unsigned Form Execution Test ===" << std::endl;
+        ShrubberyCreationForm unsignedForm("unsignedGarden");
+        president.executeForm(unsignedForm);
+    }
+    catch (const std::exception &e)
+    {
+        std::cout << "An exception occurred: " << e.what() << std::endl;
+    }
 
-	return 0;
+    return 0;
 }
